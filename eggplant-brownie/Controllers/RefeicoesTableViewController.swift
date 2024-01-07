@@ -14,6 +14,7 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
                      Refeicao(nome: "Pizza", felicidade: 4),
                      Refeicao(nome: "Comida Japonesa", felicidade: 5)]
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return refeicoes.count
     }
@@ -40,15 +41,11 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
             guard let indexPath = tableView.indexPath(for: celula) else { return }
             let refeicao = refeicoes[indexPath.row]
             
-            let alert = UIAlertController(title:refeicao.nome, message: refeicao.details, preferredStyle: .alert)
-            
-            let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel)
-            alert.addAction(cancelButton)
-            
-            present(alert,animated: true)
+            RemoveMealViewController().show()
             
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "adicionar" {

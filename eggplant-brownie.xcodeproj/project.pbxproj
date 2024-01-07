@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A957BDA02B4B3838004FAE80 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A957BD9F2B4B3838004FAE80 /* Alert.swift */; };
+		A957BDA22B4B3F1D004FAE80 /* RemoveMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A957BDA12B4B3F1D004FAE80 /* RemoveMealViewController.swift */; };
 		B90829C72221AF9600EA37C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90829C62221AF9600EA37C8 /* AppDelegate.swift */; };
 		B90829C92221AF9600EA37C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90829C82221AF9600EA37C8 /* ViewController.swift */; };
 		B90829CC2221AF9600EA37C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90829CA2221AF9600EA37C8 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		A957BD9F2B4B3838004FAE80 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		A957BDA12B4B3F1D004FAE80 /* RemoveMealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMealViewController.swift; sourceTree = "<group>"; };
 		B90829C32221AF9600EA37C8 /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90829C62221AF9600EA37C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B90829C82221AF9600EA37C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				B90829C82221AF9600EA37C8 /* ViewController.swift */,
 				B9AA623D2290672F00D50AE2 /* RefeicoesTableViewController.swift */,
 				B920424222A5C9910062AA66 /* AdicionarItensViewController.swift */,
+				A957BDA12B4B3F1D004FAE80 /* RemoveMealViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				B90829C92221AF9600EA37C8 /* ViewController.swift in Sources */,
 				B9AA623E2290672F00D50AE2 /* RefeicoesTableViewController.swift in Sources */,
 				B9EFBAE8223D76FA00B773B2 /* Refeicao.swift in Sources */,
+				A957BDA22B4B3F1D004FAE80 /* RemoveMealViewController.swift in Sources */,
 				B90829C72221AF9600EA37C8 /* AppDelegate.swift in Sources */,
 				A957BDA02B4B3838004FAE80 /* Alert.swift in Sources */,
 			);
