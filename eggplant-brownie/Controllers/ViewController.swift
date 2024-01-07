@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - IBOutlet
     
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itensTableView: UITableView?
     
     // MARK: - Atributos
     
@@ -46,8 +46,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         itens.append(item)
-        itensTableView.reloadData()
+        if let table = itensTableView {
+            table.reloadData()
+        } else {
+            Alert(controller: self).show(message: "Erro ao carregar tabela")
+        }
     }
+    
+    
     
     // MARK: - UITableViewDataSource
     
@@ -88,20 +94,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func adicionar(_ sender: Any) {
         
+       
+        guard let meal = mealFromForm() else { return }
+        delegate?.add(meal)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func mealFromForm() -> Refeicao?   {
         guard let nomeDaRefeicao = nomeTextField?.text else {
-            return
+            Alert(controller: self).show(message: "erro ao ler o campo nome")
+            return nil
         }
         
         guard let felicidadeDaRefeicao = felicidadeTextField?.text, let felicidade = Int(felicidadeDaRefeicao) else {
-            return
+            Alert(controller: self).show(message: "erro ao ler o campo felicidade")
+            return nil
         }
         
         let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
         
         print("comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
         
-        delegate?.add(refeicao)
-        navigationController?.popViewController(animated: true)
+        return refeicao
     }
+    
 }
 
