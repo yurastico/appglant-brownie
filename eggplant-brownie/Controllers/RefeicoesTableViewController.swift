@@ -41,7 +41,9 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
             guard let indexPath = tableView.indexPath(for: celula) else { return }
             let refeicao = refeicoes[indexPath.row]
             
-            RemoveMealViewController().show()
+            RemoveMealViewController(controller: self).show(refeicao) { action in
+                
+            }
             
         }
     }

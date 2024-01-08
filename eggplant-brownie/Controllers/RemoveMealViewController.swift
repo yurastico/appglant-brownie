@@ -18,7 +18,7 @@ final class RemoveMealViewController {
  
     
     func show(_ meal: Refeicao, handler: @escaping (UIAlertAction) -> Void) {
-        let alert = UIAlertController(title:refeicao.nome, message: refeicao.details, preferredStyle: .alert)
+        let alert = UIAlertController(title:meal.nome, message: meal.details, preferredStyle: .alert)
         
         let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel)
         alert.addAction(cancelButton)
