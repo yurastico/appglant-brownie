@@ -21,10 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Atributos
     
     var delegate: AdicionaRefeicaoDelegate?
-    var itens: [Item] = [Item(nome: "Molho de tomate", calorias: 40.0),
-                         Item(nome: "Queijo", calorias: 40.0),
-                         Item(nome: "Molho apimentado", calorias: 40.0),
-                         Item(nome: "Manjericao", calorias: 40.0)]
+    var itens: [Item] = []
     var itensSelecionados: [Item] = []
     
     // MARK: - IBOutlets
@@ -37,10 +34,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         let botaoAdicionaItem = UIBarButtonItem(title: "adicionar", style: .plain, target: self, action: #selector(adicionarItens))
         navigationItem.rightBarButtonItem = botaoAdicionaItem
-        guard let path = getDirectory() else { return }
-        guard let data = try? Data(contentsOf: path) else { return }
-        guard let savedItems = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Item] else { return }
-        itens = savedItems ?? []
+        let savedItems = ItemDao().getItems()
+        itens = savedItems
+        
     }
     
     @objc func adicionarItens() {
@@ -55,18 +51,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             Alert(controller: self).show(message: "Erro ao carregar tabela")
         }
-        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: itens, requiringSecureCoding: false) else { return }
-        guard let path = getDirectory() else { return }
-        try? data.write(to: path)
+        
+        ItemDao().save(itens)
         
     }
     
-    private func getDirectory() -> URL? {
-        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        let path = directory.appendingPathComponent("itens")
-        return path
-    }
-    
+  
     
     
     // MARK: - UITableViewDataSource

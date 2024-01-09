@@ -10,26 +10,17 @@ import UIKit
 
 class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDelegate {
     
-    var refeicoes = [Refeicao(nome: "Macarrão", felicidade: 4),
-                     Refeicao(nome: "Pizza", felicidade: 4),
-                     Refeicao(nome: "Comida Japonesa", felicidade: 5)]
+    var refeicoes: [Refeicao] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let path = getDirectory() else { return }
-        
-        guard let data = try? Data(contentsOf: path) else { return }
-        guard let savedMeals = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Array<Refeicao> else { return }
-        refeicoes = savedMeals ?? []
+        let mealsList = MealDao().getMeals()
+        refeicoes = mealsList 
         
     }
     
-    private func getDirectory() -> URL? {
-        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        let path = directory.appendingPathComponent("meal")
-        return path
-    }
+   
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,11 +41,7 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
     
     func add(_ refeicao: Refeicao) {
         refeicoes.append(refeicao)
-        guard let path = getDirectory() else { return }
-        
-        guard let data =
-                try? NSKeyedArchiver.archivedData(withRootObject: refeicoes, requiringSecureCoding: false) else { return }
-        try? data.write(to: path)
+        MealDao().save(meals: refeicoes)
         
         
         tableView.reloadData()
